@@ -23,11 +23,7 @@ console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME
 const timezone = args.z ? args.z:moment.tz.guess();
 var latitude = args.n || (args.s * -1); 
 var longitude = args.e || (args.w * -1);
-
-const day = 1;
-if(args.d != null){
-	day = args.d;
-}
+var day = args.d ? args.d : 1; 
   
 const URL = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&temperature_unit=fahrenheit&timezone=' + timezone;
 
@@ -47,7 +43,8 @@ if(precip == 0){
 else{
         console.log("You will need your galoshes ");
 } 
-// -d command 
+// -d command
+const day = args.d;  
 if (day == 0) {
   console.log("today.")
 } else if (day > 1) {
@@ -56,4 +53,5 @@ if (day == 0) {
   console.log("tomorrow.")
 }
 
+console.log(data); 
  
