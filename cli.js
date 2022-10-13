@@ -44,9 +44,10 @@ else{
         console.log("You will need your galoshes ");
 } 
 // -d command
-if (day == 0) {
+const days = args.d; 
+if (days == 0) {
   console.log("today.")
-} else if (day > 1) {
+} else if (days > 1) {
   console.log("in " + day + " days.")
 } else {
   console.log("tomorrow.")
