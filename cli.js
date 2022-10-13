@@ -21,22 +21,20 @@ console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME
 
 }  
 const timezone = args.z ? args.z:moment.tz.guess();
-const latitude = args.n || (args.s * -1); 
-const longitude = args.e || (args.w * -1);
+var latitude = args.n || (args.s * -1); 
+var longitude = args.e || (args.w * -1);
 
 const day = 1;
 if(args.d != null){
 	day = args.d;
 }
   
-const URL = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&current_weather=true&timezone=' + timezone;
+const URL = 'https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=precipitation_hours&temperature_unit=fahrenheit&timezone=' + timezone;
 
 const response = await fetch(URL); 
 
 const data = await response.json();
-
-// -j command
-if(args.j){
+if(args.j){ 
 	console.log(data);
 	process.exit(0);
 }
